@@ -23,10 +23,12 @@
         var claim = document.getElementById('claim');
         var div = document.getElementById('div');
         claim.addEventListener('click', () => {
-            let letters = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+            // let letters = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+            var aa = ['XV4QZGPBURAEWKCD5', '9VNJP23LTRCZY4HQ5W', 'P8F735G6Y9T4DBUA', 'US8PVNC3GL7BMFQW6X49', '8TY5JWVL34XPR7GBM6AHF', 'N2RF76S45983TWVXD', 'U36SLTMPKCFQ8BXH5VJ', '5FR92NME3YZBK4W8XA6']
+
             let code = '';
             for (var i = 0; i < 8; i++) {
-                code += letters.charAt(Math.floor(Math.random() * letters.length))
+                code += aa[i].charAt(Math.floor(Math.random() * aa[i].length))
             }
             
             let unencoded = `{"module":"SettlementScheme","type":"CardShare","code":"${code}","cardName":"","appId":"2237","icon":""}`;
