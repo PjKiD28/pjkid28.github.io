@@ -23,7 +23,7 @@
         var claim = document.getElementById('claim');
         var div = document.getElementById('div');
         claim.addEventListener('click', () => {
-            let letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let letters = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
             let code = '';
             for (var i = 0; i < 8; i++) {
                 code += letters.charAt(Math.floor(Math.random() * letters.length))
