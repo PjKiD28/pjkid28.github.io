@@ -5,15 +5,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        span{
+            display: block;
+            background-color: red;
+            margin: 5px auto;
+        }
+    </style>
 </head>
 
 <body>
     <input type="button" value="Claim" id="claim" style="width: 400px;height: 200px;">
+    <div id="div">
+
+    </div>
     <script>
         var claim = document.getElementById('claim');
+        var div = document.getElementById('div');
         claim.addEventListener('click', () => {
-            let letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            let digits = '0123456789';
+            let letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
             let code = '';
             for (var i = 0; i < 8; i++) {
                 code += letters.charAt(Math.floor(Math.random() * letters.length))
@@ -24,7 +34,10 @@
             let b64 = btoa(unencoded);
 
             let url = 'pbpsdkhok://?gamedata=JUNMFORM_Pandora_' + b64;
-
+            
+            let span = document.createElement('span');
+            span.innerHTML = code;
+            div.appendChild(span)
             window.location.href = url;
         });
     </script>
