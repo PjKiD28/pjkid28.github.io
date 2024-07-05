@@ -30,7 +30,6 @@
             for (var i = 0; i < 8; i++) {
                 code += aa[i].charAt(Math.floor(Math.random() * aa[i].length))
             }
-            code = 'X9PU8NU5';
             let unencoded = `{"module":"SettlementScheme","type":"CardShare","code":"${code}","cardName":"","appId":"2237","icon":""}`;
 
             let b64 = btoa(unencoded);
