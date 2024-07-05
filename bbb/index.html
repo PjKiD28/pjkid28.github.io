@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        span{
+        span {
             display: block;
             background-color: red;
             margin: 5px auto;
@@ -20,26 +20,59 @@
 
     </div>
     <script>
-        var claim = document.getElementById('claim');
-        var div = document.getElementById('div');
-        claim.addEventListener('click', () => {
-            // let letters = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-            var aa = ['XV4QZGPBURAEWKCD5', '9VNJP23LTRCZY4HQ5W', 'P8F735G6Y9T4DBUA', 'US8PVNC3GL7BMFQW6X49', '8TY5JWVL34XPR7GBM6AHF', 'N2RF76S45983TWVXD', 'U36SLTMPKCFQ8BXH5VJ', '5FR92NME3YZBK4W8XA6']
+        function countDigits(str) {
+            let digits = str.match(/\d/g);
+            return digits ? digits.length : 0;
+        }
 
+        function go() {
             let code = '';
-            for (var i = 0; i < 8; i++) {
-                code += aa[i].charAt(Math.floor(Math.random() * aa[i].length))
+            while (true) {
+                code = ''
+                var aa = ['XV4QZGPBURAEWKCD5', '9VNJP23LTRCZY4HQ5W', 'P8F735G6Y9T4DBUA', 'US8PVNC3GL7BMFQW6X49', '8TY5JWVL34XPR7GBM6AHF', 'N2RF76S45983TWVXD', 'U36SLTMPKCFQ8BXH5VJ', '5FR92NME3YZBK4W8XA6']
+                for (var i = 0; i < 8; i++) {
+                    var temp = ''
+                    while (true) {
+                        temp = aa[i].charAt(Math.floor(Math.random() * aa[i].length))
+                        if (i > 0 && i < 2) {
+                            if (countDigits(code) > 0 && countDigits(temp) == 1) {
+                                console.log('in while')
+                                console.log(temp)
+                                continue
+                            }
+                        }
+                        if (i == 2 && countDigits(code) == 0 && countDigits(temp) == 0) {
+                            continue
+                        }
+                        if (i == 2 && countDigits(code) >= 1 && countDigits(temp) == 1) {
+                            continue
+                        }
+                        console.log('in break')
+                        break
+                    }
+                    code += temp
+                }
+                if (!(countDigits(code) <= 1)) {
+                    console.log('break')
+                    break
+                }
             }
             let unencoded = `{"module":"SettlementScheme","type":"CardShare","code":"${code}","cardName":"","appId":"2237","icon":""}`;
 
             let b64 = btoa(unencoded);
 
             let url = 'pbpsdkhok://?gamedata=JUNMFORM_Pandora_' + b64;
-            
+
             let span = document.createElement('span');
             span.innerHTML = code;
             div.appendChild(span)
-            window.location.href = url;
+            // window.location.href = url;
+        }
+
+        var claim = document.getElementById('claim');
+        var div = document.getElementById('div');
+        claim.addEventListener('click', () => {
+            setInterval(go, 5000)
         });
     </script>
 </body>
