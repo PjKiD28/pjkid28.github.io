@@ -56,7 +56,13 @@
 
         var claim = document.getElementById('claim');
         var div = document.getElementById('div');
-        claim.addEventListener('click', go);
+        claim.addEventListener('click', () => {
+            go();
+            setTimeout(function(){
+                claim.click();
+                console.log('clicked')
+            }, 10000)
+        });
     </script>
 </body>
 
